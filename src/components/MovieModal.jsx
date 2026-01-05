@@ -9,8 +9,7 @@ function MovieModal({movie, onClose}) {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage:
-              "url(https://image.tmdb.org/t/p/original/etqr6fOOCXQOgwrQXaKwenTSuzx.jpg)",
+            backgroundImage: `url(${movie.movie_banner})`,
           }}
         />
 
@@ -23,20 +22,20 @@ function MovieModal({movie, onClose}) {
 
           <div className="items-center justify-center shrink-0 hidden md:flex">
             <img
-              src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/rtGDOeG9LzoerkDGZF9dnVeLppL.jpg"
+              src={movie.image}
               alt=""
               className="max-w-xs w-full rounded-xl border-4 border-white/20"
             />
           </div>
           <div className="flex flex-col h-full overflow-y-auto [&::-webkit-scrollbar]:hidden">
             <p className="font-[Playfair_Display] text-darkGreen/30 text-xl md:text-2xl mb-1">
-              となりのトトロ
+              {movie.original_title}
             </p>
             <p className="relative font-[Nunito] font-bold uppercase text-blue text-xs before:absolute before:-bottom-2 before:left-0 before:h-0.5 md:before:h-1 before:w-20 before:bg-blue/50 mb-5">
-              Tonari no Totoro
+              {movie.original_title_romanised}
             </p>
             <h3 className="font-[Playfair_Display] text-darkGreen text-4xl md:text-7xl font-bold md:mb-2">
-              My Neighbor Totoro
+              {movie.title}
             </h3>
             <div className="grid grid-cols-2 gap-2 md:gap-4 my-4">
               <div className="w-full flex items-center gap-2 md:gap-4 bg-white/80 border border-light/40 rounded-2xl py-3 px-4 md:p-4">
@@ -46,7 +45,7 @@ function MovieModal({movie, onClose}) {
                     Score
                   </p>
                   <p className="font-[Playfair_Display] text-darkGreen text-lg md:text-xl leading-4 font-semibold">
-                    93
+                    {movie.rt_score}
                   </p>
                 </div>
               </div>
@@ -57,7 +56,7 @@ function MovieModal({movie, onClose}) {
                     Year
                   </p>
                   <p className="font-[Playfair_Display] text-darkGreen text-lg md:text-xl leading-4 font-semibold">
-                    1988
+                    {movie.release_date}
                   </p>
                 </div>
               </div>
@@ -68,7 +67,7 @@ function MovieModal({movie, onClose}) {
                     Duration
                   </p>
                   <p className="font-[Playfair_Display] text-darkGreen text-lg md:text-xl leading-4 font-semibold">
-                    86m
+                    {movie.running_time}
                   </p>
                 </div>
               </div>
@@ -79,17 +78,13 @@ function MovieModal({movie, onClose}) {
                     Director
                   </p>
                   <p className="font-[Playfair_Display] text-darkGreen text-lg md:text-xl leading-5 font-semibold truncate">
-                    Hayao Miyazaki
+                    {movie.director}
                   </p>
                 </div>
               </div>
             </div>
             <p className="font-[Nunito] text-darkGreen/80 text-md md:text-lg tracking-wide leading-7 mb-5">
-              Two sisters move to the country with their father in order to be
-              closer to their hospitalized mother, and discover the surrounding
-              trees are inhabited by Totoros, magical spirits of the forest.
-              When the youngest runs away from home, the older sister seeks help
-              from the spirits to find her.
+              {movie.description}
             </p>
             <hr className="text-darkGreen/5 mt-auto" />
             <div className="mt-4 flex items-center gap-4">
@@ -99,7 +94,7 @@ function MovieModal({movie, onClose}) {
                   Producer
                 </p>
                 <p className="font-[Playfair_Display] text-darkGreen text-xl leading-5 font-semibold">
-                  Hayao Miyazaki
+                  {movie.producer}
                 </p>
               </div>
             </div>
