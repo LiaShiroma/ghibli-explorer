@@ -1,11 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Banner from "../assets/banner.png";
 import AboutSection from "../components/AboutSection";
 import FilterSection from "../components/FilterSection";
 import MoviesSection from "../components/MoviesSection";
 
 export default function Home() {
+  const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState("");
+
+  useEffect(() => {
+      async function fetchMovies() {
+        try {
+          const res = await fetch("https://ghibliapi.vercel.app/films");
+          const data = await res.json();
+          setMovies(data);
+        } catch (error) {
+          console.error("Erro ao buscar filmes:", error);
+        }
+      }
+  
+      fetchMovies();
+    }, []);
 
   return (
     <main className="w-full px-6">
@@ -30,7 +45,7 @@ export default function Home() {
       
       <FilterSection search={search} onSearchChange={setSearch}/>
 
-      <MoviesSection search={search} />
+      <MoviesSection movies={movies} search={search} />
 
       <AboutSection />
 

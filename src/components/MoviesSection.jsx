@@ -2,25 +2,10 @@ import { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 import MovieModal from "./MovieModal";
 
-function MoviesSection({ search }) {
-  const [movies, setMovies] = useState([]);
+function MoviesSection({ search, movies }) {;
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   const filteredMovies = movies.filter(movie => movie.title.toLowerCase().includes(search.toLowerCase()))
-
-  useEffect(() => {
-    async function fetchMovies() {
-      try {
-        const res = await fetch("https://ghibliapi.vercel.app/films");
-        const data = await res.json();
-        setMovies(data);
-      } catch (error) {
-        console.error("Erro ao buscar filmes:", error);
-      }
-    }
-
-    fetchMovies();
-  }, []);
 
   useEffect(() => {
     if(selectedMovie) {
