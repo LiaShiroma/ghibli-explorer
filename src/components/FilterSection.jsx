@@ -1,7 +1,7 @@
 import Button from "./Button";
 import SearchInput from "./SearchInput";
 import Select from "./Select";
-import { ArrowDownNarrowWide, Calendar, Film, User } from "lucide-react";
+import { ArrowDownNarrowWide, Calendar, User } from "lucide-react";
 
 function FilterSection({ search, onSearchChange}) {
   return (
@@ -21,10 +21,6 @@ function FilterSection({ search, onSearchChange}) {
           <Select
             label="Era"
             icon={<Calendar size={16} className="text-green/50" />}
-          />
-          <Select
-            label="Genre"
-            icon={<Film size={16} className="text-green/50" />}
           />
           <Select
             label="Sort by"
