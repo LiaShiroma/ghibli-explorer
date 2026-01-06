@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 import MovieModal from "./MovieModal";
 
-function MoviesSection() {
+function MoviesSection({ search }) {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
+  const filteredMovies = movies.filter(movie => movie.title.toLowerCase().includes(search.toLowerCase()))
 
   useEffect(() => {
     async function fetchMovies() {
@@ -59,7 +60,7 @@ function MoviesSection() {
 
       <div
         className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {movies.map((movie) => (
+        {filteredMovies.map((movie) => (
           <MovieCard movie={movie} key={movie.id} onExplore={() => setSelectedMovie(movie)}/>
         ))}
       </div>

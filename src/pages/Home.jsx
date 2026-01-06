@@ -1,9 +1,12 @@
+import { useState } from "react";
 import Banner from "../assets/banner.png";
 import AboutSection from "../components/AboutSection";
 import FilterSection from "../components/FilterSection";
 import MoviesSection from "../components/MoviesSection";
 
 export default function Home() {
+  const [search, setSearch] = useState("");
+
   return (
     <main className="w-full px-6">
       <section className="max-w-7xl mx-auto pt-6 md:py-10">
@@ -25,9 +28,9 @@ export default function Home() {
         </p>
       </section>
       
-      <FilterSection />
+      <FilterSection search={search} onSearchChange={setSearch}/>
 
-      <MoviesSection />
+      <MoviesSection search={search} />
 
       <AboutSection />
 
