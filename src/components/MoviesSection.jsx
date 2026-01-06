@@ -21,6 +21,36 @@ function MoviesSection() {
     fetchMovies();
   }, []);
 
+  useEffect(() => {
+    if(selectedMovie) {
+      document.body.style.overflow = 'hidden'
+    } 
+
+    return () => {
+      document.body.style.overflow = 'visible'
+    }
+  }, [selectedMovie])
+  
+  useEffect(() => {
+    if(selectedMovie) {
+      document.addEventListener("keydown", handleKeyDown)
+
+      return () => {
+        document.removeEventListener("keydown", handleKeyDown)
+      }
+    }
+  }, [selectedMovie])
+
+  function handleCloseModal() {
+    setSelectedMovie(null)
+  }
+
+  function handleKeyDown(event) {
+    if(event.key === "Escape") {
+      handleCloseModal()
+    }
+  }
+
   return (
     <section className="max-w-7xl mx-auto py-8 md:py-10">
       <h2 className="text-darkGreen font-[Playfair_Display] font-bold text-xl uppercase ml-4 mb-6 relative before:absolute before:bottom-0 before:-left-4 before:w-1 before:h-6 before:bg-green md:text-2xl md:before:h-8">
@@ -37,7 +67,7 @@ function MoviesSection() {
       {selectedMovie && (
         <MovieModal
           movie={selectedMovie}
-          onClose={() => setSelectedMovie(null)}
+          onClose={handleCloseModal}
         />
       )}
     </section>
