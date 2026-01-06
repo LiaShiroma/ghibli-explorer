@@ -71,6 +71,10 @@ function MoviesSection({ search }) {
           onClose={handleCloseModal}
         />
       )}
+
+      {search && filteredMovies.length === 0 && (
+        <p className="font-[Nunito] text-darkGreen/70 tracking-wider text-center text-base md:text-xl mb-4">No results for "{search}"</p>
+      )}
     </section>
   );
 }
