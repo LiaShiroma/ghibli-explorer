@@ -7,6 +7,17 @@ import MoviesSection from "../components/MoviesSection";
 export default function Home() {
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState("");
+  const [selectedDirector, setSelectedDirector] = useState("");
+
+  const directors = Array.from(new Set(movies.map(movie => movie.director)));
+  const directorOptions = [
+    {value: "", label: "All directors"},
+    ...directors.map(director => ({
+      value:director,
+      label: director
+    }))
+  ]
+   
 
   useEffect(() => {
       async function fetchMovies() {
@@ -43,9 +54,16 @@ export default function Home() {
         </p>
       </section>
       
-      <FilterSection search={search} onSearchChange={setSearch}/>
+      <FilterSection 
+        search={search}
+        onSearchChange={setSearch}
+        directorOptions={directorOptions}
+        selectedDirector={selectedDirector}
+        onDirectorChange={setSelectedDirector}
 
-      <MoviesSection movies={movies} search={search} />
+      />
+
+      <MoviesSection movies={movies} search={search} selectedDirector={selectedDirector} />
 
       <AboutSection />
 

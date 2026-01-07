@@ -1,4 +1,4 @@
-function Select({ label, icon }) {
+function Select({ label, icon, value, options, onChange }) {
   return (
     <div className="w-full">
       <label
@@ -13,10 +13,12 @@ function Select({ label, icon }) {
           id="director"
           name="director"
           className="w-full text-sm font-[Nunito] font-bold text-darkGreen focus:outline-none appearance-none"
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
         >
-          <option value="US">United States</option>
-          <option value="CA">Canada</option>
-          <option value="EU">Europe</option>
+          {options.map((option) => (
+            <option value={option.value} key={option.value}>{option.label}</option>
+          ))}
         </select>
 
         {icon}
