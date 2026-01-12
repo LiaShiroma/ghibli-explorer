@@ -2,21 +2,42 @@ import { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 import MovieModal from "./MovieModal";
 
-function MoviesSection({ search, movies, selectedDirector, selectedYear }) {
+function MoviesSection({
+  search,
+  movies,
+  selectedDirector,
+  selectedYear,
+  selectedSort,
+}) {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   const filteredMovies = movies.filter((movie) => {
     const matchesSearch = movie.title
       .toLowerCase()
       .includes(search.toLowerCase());
-      
+
     const matchesDirector =
       selectedDirector === "" || movie.director === selectedDirector;
 
-    const matchesYear = selectedYear === "" || movie.release_date === selectedYear
+    const matchesYear =
+      selectedYear === "" || movie.release_date === selectedYear;
 
     return matchesSearch && matchesDirector && matchesYear;
   });
+
+  const sortedMovies = [...filteredMovies];
+
+  if (selectedSort) {
+    sortedMovies.sort((a, b) => {
+      if (selectedSort === "year") {
+        return b.release_date - a.release_date;
+      }
+      if (selectedSort === "score") {
+        return b.rt_score - a.rt_score;
+      }
+      return 0;
+    });
+  }
 
   useEffect(() => {
     if (selectedMovie) {
@@ -55,7 +76,7 @@ function MoviesSection({ search, movies, selectedDirector, selectedYear }) {
       </h2>
 
       <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {filteredMovies.map((movie) => (
+        {sortedMovies.map((movie) => (
           <MovieCard
             movie={movie}
             key={movie.id}
