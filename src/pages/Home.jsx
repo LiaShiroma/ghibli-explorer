@@ -8,6 +8,7 @@ export default function Home() {
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState("");
   const [selectedDirector, setSelectedDirector] = useState("");
+  const [selectedYear, setSelectedYear] = useState("");
 
   const directors = Array.from(new Set(movies.map(movie => movie.director)));
   const directorOptions = [
@@ -18,6 +19,14 @@ export default function Home() {
     }))
   ]
    
+  const years = Array.from(new Set(movies.map(movie => movie.release_date)));
+  const yearOptions = [
+    {value: "", label: "All years"},
+    ...years.map(year => ({
+      value: year,
+      label: year
+    }))
+  ]
 
   useEffect(() => {
       async function fetchMovies() {
@@ -60,10 +69,13 @@ export default function Home() {
         directorOptions={directorOptions}
         selectedDirector={selectedDirector}
         onDirectorChange={setSelectedDirector}
+        yearOptions={yearOptions}
+        selectedYear={selectedYear}
+        onYearChange={setSelectedYear}
 
       />
 
-      <MoviesSection movies={movies} search={search} selectedDirector={selectedDirector} />
+      <MoviesSection movies={movies} search={search} selectedDirector={selectedDirector} selectedYear={selectedYear} />
 
       <AboutSection />
 

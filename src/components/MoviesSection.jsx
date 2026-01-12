@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 import MovieModal from "./MovieModal";
 
-function MoviesSection({ search, movies, selectedDirector }) {
+function MoviesSection({ search, movies, selectedDirector, selectedYear }) {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   const filteredMovies = movies.filter((movie) => {
@@ -13,7 +13,9 @@ function MoviesSection({ search, movies, selectedDirector }) {
     const matchesDirector =
       selectedDirector === "" || movie.director === selectedDirector;
 
-    return matchesSearch && matchesDirector;
+    const matchesYear = selectedYear === "" || movie.release_date === selectedYear
+
+    return matchesSearch && matchesDirector && matchesYear;
   });
 
   useEffect(() => {
