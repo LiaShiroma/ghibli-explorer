@@ -35,6 +35,13 @@ export default function Home() {
     { value: "year", label: "Year" },
   ];
 
+  function handleResetFilters() {
+    setSearch("");
+    setSelectedDirector("");
+    setSelectedYear("");
+    setSelectedSort("");
+  }
+
   useEffect(() => {
     async function fetchMovies() {
       try {
@@ -82,6 +89,7 @@ export default function Home() {
         sortOptions={sortOptions}
         selectedSort={selectedSort}
         onSortChange={setSelectedSort}
+        onResetFilters={handleResetFilters}
       />
 
       <MoviesSection

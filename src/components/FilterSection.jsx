@@ -15,6 +15,7 @@ function FilterSection({
   sortOptions,
   selectedSort,
   onSortChange,
+  onResetFilters
 }) {
   return (
     <section className="max-w-7xl mx-auto py-8 md:py-10">
@@ -48,7 +49,7 @@ function FilterSection({
             onChange={onSortChange}
           />
 
-          <Button variant="primary">Reset Filters</Button>
+          <Button variant="primary" onClick={onResetFilters}>Reset Filters</Button>
         </div>
       </div>
     </section>
