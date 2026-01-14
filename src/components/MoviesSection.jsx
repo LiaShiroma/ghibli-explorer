@@ -10,6 +10,7 @@ function MoviesSection({
   selectedYear,
   selectedSort,
   isLoading,
+  error,
 }) {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
@@ -74,7 +75,13 @@ function MoviesSection({
   let moviesContent;
 
   if (isLoading) {
-    moviesContent = <Loading />
+    moviesContent = <Loading />;
+  } else if (error) {
+    moviesContent = (
+      <p className="font-[Nunito] text-darkGreen/70 tracking-wider text-center text-base md:text-xl mb-4">
+        The films couldn’t reach us this time. Please try again later.
+      </p>
+    );
   } else {
     moviesContent = (
       <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

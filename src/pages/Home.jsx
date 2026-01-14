@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import Banner from "../assets/banner.png";
 import AboutSection from "../components/AboutSection";
 import FilterSection from "../components/FilterSection";
@@ -11,6 +11,7 @@ export default function Home() {
   const [selectedYear, setSelectedYear] = useState("");
   const [selectedSort, setSelectedSort] = useState("");
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   const directors = Array.from(new Set(movies.map((movie) => movie.director)));
   const directorOptions = [
@@ -46,13 +47,15 @@ export default function Home() {
   useEffect(() => {
     async function fetchMovies() {
       try {
+        setError(null)
         setIsLoading(true)
-        const res = await fetch("https://ghibliapi.vercel.app/films");
+        const res = await fetch("https://ghibliapai.vercel.app/films");
         const data = await res.json();
         setMovies(data);
-        setIsLoading(false)
       } catch (error) {
-        console.error("Erro ao buscar filmes:", error);
+        setError(error)
+      } finally {
+        setIsLoading(false)
       }
     }
 
@@ -102,6 +105,7 @@ export default function Home() {
         selectedYear={selectedYear}
         selectedSort={selectedSort}
         isLoading={isLoading}
+        error={error}
       />
 
       <AboutSection />
