@@ -73,6 +73,7 @@ function MoviesSection({
   }
 
   let moviesContent;
+  const hasActiveFilters = search || selectedDirector || selectedYear;
 
   if (isLoading) {
     moviesContent = <Loading />;
@@ -82,7 +83,13 @@ function MoviesSection({
         The films couldn’t reach us this time. Please try again later.
       </p>
     );
-  } else {
+  } else if(filteredMovies.length === 0 && hasActiveFilters ) {
+    moviesContent = (
+      <p className="font-[Nunito] text-darkGreen/70 tracking-wider text-center text-base md:text-xl mb-4">
+          No movies found. Try adjusting your filters.
+        </p>
+    )
+  }else {
     moviesContent = (
       <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {sortedMovies.map((movie) => (
@@ -108,11 +115,6 @@ function MoviesSection({
         <MovieModal movie={selectedMovie} onClose={handleCloseModal} />
       )}
 
-      {search && filteredMovies.length === 0 && (
-        <p className="font-[Nunito] text-darkGreen/70 tracking-wider text-center text-base md:text-xl mb-4">
-          No results for "{search}"
-        </p>
-      )}
     </section>
   );
 }

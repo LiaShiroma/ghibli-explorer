@@ -49,7 +49,7 @@ export default function Home() {
       try {
         setError(null)
         setIsLoading(true)
-        const res = await fetch("https://ghibliapai.vercel.app/films");
+        const res = await fetch("https://ghibliapi.vercel.app/films");
         const data = await res.json();
         setMovies(data);
       } catch (error) {
