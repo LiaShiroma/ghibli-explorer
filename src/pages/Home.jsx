@@ -10,6 +10,7 @@ export default function Home() {
   const [selectedDirector, setSelectedDirector] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
   const [selectedSort, setSelectedSort] = useState("");
+  const [isLoading, setIsLoading] = useState(false)
 
   const directors = Array.from(new Set(movies.map((movie) => movie.director)));
   const directorOptions = [
@@ -45,9 +46,11 @@ export default function Home() {
   useEffect(() => {
     async function fetchMovies() {
       try {
+        setIsLoading(true)
         const res = await fetch("https://ghibliapi.vercel.app/films");
         const data = await res.json();
         setMovies(data);
+        setIsLoading(false)
       } catch (error) {
         console.error("Erro ao buscar filmes:", error);
       }
@@ -98,6 +101,7 @@ export default function Home() {
         selectedDirector={selectedDirector}
         selectedYear={selectedYear}
         selectedSort={selectedSort}
+        isLoading={isLoading}
       />
 
       <AboutSection />

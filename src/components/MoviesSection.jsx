@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 import MovieModal from "./MovieModal";
+import Loading from "./Loading";
 
 function MoviesSection({
   search,
@@ -8,6 +9,7 @@ function MoviesSection({
   selectedDirector,
   selectedYear,
   selectedSort,
+  isLoading,
 }) {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
@@ -69,12 +71,12 @@ function MoviesSection({
     }
   }
 
-  return (
-    <section className="max-w-7xl mx-auto py-8 md:py-10">
-      <h2 className="text-darkGreen font-[Playfair_Display] font-bold text-xl uppercase ml-4 mb-6 relative before:absolute before:bottom-0 before:-left-4 before:w-1 before:h-6 before:bg-green md:text-2xl md:before:h-8">
-        The Collection
-      </h2>
+  let moviesContent;
 
+  if (isLoading) {
+    moviesContent = <Loading />
+  } else {
+    moviesContent = (
       <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {sortedMovies.map((movie) => (
           <MovieCard
@@ -84,6 +86,16 @@ function MoviesSection({
           />
         ))}
       </div>
+    );
+  }
+
+  return (
+    <section className="max-w-7xl mx-auto py-8 md:py-10">
+      <h2 className="text-darkGreen font-[Playfair_Display] font-bold text-xl uppercase ml-4 mb-6 relative before:absolute before:bottom-0 before:-left-4 before:w-1 before:h-6 before:bg-green md:text-2xl md:before:h-8">
+        The Collection
+      </h2>
+
+      {moviesContent}
 
       {selectedMovie && (
         <MovieModal movie={selectedMovie} onClose={handleCloseModal} />
