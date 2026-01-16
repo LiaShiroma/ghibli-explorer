@@ -4,8 +4,8 @@ function MovieModal({movie, onClose}) {
 	console.log(movie);
 	
   return (
-    <div className="fixed z-10 w-full h-full bg-black/30 top-0 left-0 p-6 flex items-center justify-center"  onClick={onClose}>
-      <div className="relative max-w-6xl w-full h-full max-h-200 rounded-2xl overflow-hidden" onClick={(e) => e.stopPropagation()}>
+    <div className="fixed z-10 w-full h-full bg-black/30 top-0 left-0 p-6 flex items-center justify-center animate-[modal-backdrop_0.3s_ease-out]" onClick={onClose}>
+      <div className="relative max-w-6xl w-full h-full max-h-200 rounded-2xl overflow-hidden animate-[modal-content_0.35s_ease-out_both]" onClick={(e) => e.stopPropagation()}>
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
