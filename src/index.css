@@ -13,3 +13,14 @@
   --color-shadow: rgba(26, 46, 37, 0.1);
   --color-white: #FFFFFF;
 }
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

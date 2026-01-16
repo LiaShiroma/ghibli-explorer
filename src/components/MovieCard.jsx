@@ -3,11 +3,13 @@ import Button from "./Button";
 
 function MovieCard({ movie, onExplore }) {
   return (
-    <div className="group relative h-106 rounded-4xl overflow-hidden">
+    <div
+      className="group relative h-106 rounded-4xl overflow-hidden cursor-pointer animate-[fade-up_0.5s_ease-out_both]" onClick={onExplore}
+    >
       <img
         src={movie.image}
         alt={movie.title}
-        className="absolute inset-0 object-cover transform md:group-hover:scale-105 transition duration-700" 
+        className="absolute inset-0 object-cover transform md:group-hover:scale-105 transition duration-700"
       />
 
       <div className="absolute inset-0 bg-darkGreen/50 backdrop-blur-xs opacity-100 md:opacity-0 md:group-hover:opacity-100 transition duration-700"></div>
@@ -36,7 +38,7 @@ function MovieCard({ movie, onExplore }) {
             </p>
           </div>
         </div>
-        <Button variant="light" onClick={onExplore}>
+        <Button variant="light">
           Explore
           <ArrowRight />
         </Button>
