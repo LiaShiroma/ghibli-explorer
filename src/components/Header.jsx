@@ -37,7 +37,7 @@ function Header() {
       </div>
 
       <div
-        className={`md:hidden fixed top-0 left-0 p-4 h-full w-full bg-bg transform transition-all duration-500 ${
+        className={`md:hidden fixed top-0 left-0 p-4 h-full w-full z-50 bg-bg transform transition-all duration-1000 ${
           isOpen ? "opacity-100 translate-x-0" : "-translate-x-1080 opacity-0 pointer-events-none"
         }`}
       >
@@ -47,6 +47,7 @@ function Header() {
         >
           <X size={32} />
         </button>
+        
         <nav className="h-full flex flex-col font-[Nunito] uppercase items-center justify-center gap-6 text-darkGreen/70 text-xl">
           {navLinks.map((link) => (
             <a href={link.href} key={link.label}>
