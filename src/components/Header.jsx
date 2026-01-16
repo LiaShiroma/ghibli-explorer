@@ -2,7 +2,12 @@ import { useState } from "react";
 import Logo from "../assets/logo.svg";
 import { Menu, X } from "lucide-react";
 
-const navLinks = ["Search", "Films", "Top Rated", "About"];
+const navLinks = [
+  { label: "Search", href: "#search" },
+  { label: "Movies", href: "#movies" },
+  { label: "About", href: "#about" },
+];
+
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -21,11 +26,11 @@ function Header() {
         <nav className="hidden md:flex justify-between items-center gap-12 font-[Nunito] uppercase text-xs text-darkGreen/70">
           {navLinks.map((link) => (
             <a
-              key={link}
-              href="#"
+              key={link.label}
+              href={link.href}
               className="relative before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-0.5 before:bg-sand before:transition-all before:duration-300 hover:before:w-full after:content-['■'] after:absolute after:-right-6 after:transform after:translate-x-1/2 after:bottom-0.5 after:text-sand last:after:content-none "
             >
-              {link}
+              {link.label}
             </a>
           ))}
         </nav>
@@ -44,8 +49,8 @@ function Header() {
         </button>
         <nav className="h-full flex flex-col font-[Nunito] uppercase items-center justify-center gap-6 text-darkGreen/70 text-xl">
           {navLinks.map((link) => (
-            <a href="#" key={link}>
-              {link}
+            <a href={link.href} key={link.label}>
+              {link.label}
             </a>
           ))}
         </nav>
