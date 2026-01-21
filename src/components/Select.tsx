@@ -1,4 +1,17 @@
-function Select({ label, icon, value, options, onChange }) {
+interface SelectOption {
+  value: string;
+  label: string;
+}
+
+interface SelectProps {
+  label: string;
+  icon?: React.ReactNode;
+  value: string;
+  options: SelectOption[];
+  onChange: (value: string) => void;
+}
+
+function Select({ label, icon, value, options, onChange }: SelectProps) {
   return (
     <div className="w-full">
       <label
@@ -14,7 +27,7 @@ function Select({ label, icon, value, options, onChange }) {
           name="director"
           className="w-full text-sm font-[Nunito] font-bold text-darkGreen focus:outline-none appearance-none"
           value={value}
-          onChange={(event) => onChange(event.target.value)}
+          onChange={(event: React.ChangeEvent<HTMLSelectElement>) => onChange(event.target.value)}
         >
           {options.map((option) => (
             <option value={option.value} key={option.value}>{option.label}</option>

@@ -1,20 +1,40 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Banner from "../assets/banner.png";
 import AboutSection from "../components/AboutSection";
 import FilterSection from "../components/FilterSection";
 import MoviesSection from "../components/MoviesSection";
 
+interface Movie {
+  id: string;
+  title: string;
+  director: string;
+  producer: string;
+  release_date: string;
+  running_time: string;
+  rt_score: string;
+  description: string;
+  image: string;
+  movie_banner: string;
+  original_title: string;
+  original_title_romanised: string;
+}
+
+interface SelectOption {
+  value: string;
+  label: string;
+}
+
 export default function Home() {
-  const [movies, setMovies] = useState([]);
-  const [search, setSearch] = useState("");
-  const [selectedDirector, setSelectedDirector] = useState("");
-  const [selectedYear, setSelectedYear] = useState("");
-  const [selectedSort, setSelectedSort] = useState("");
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [search, setSearch] = useState<string>("");
+  const [selectedDirector, setSelectedDirector] = useState<string>("");
+  const [selectedYear, setSelectedYear] = useState<string>("");
+  const [selectedSort, setSelectedSort] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [error, setError] = useState<unknown | null>(null)
 
   const directors = Array.from(new Set(movies.map((movie) => movie.director)));
-  const directorOptions = [
+  const directorOptions: SelectOption[] = [
     { value: "", label: "All directors" },
     ...directors.map((director) => ({
       value: director,
@@ -23,7 +43,7 @@ export default function Home() {
   ];
 
   const years = Array.from(new Set(movies.map((movie) => movie.release_date)));
-  const yearOptions = [
+  const yearOptions: SelectOption[] = [
     { value: "", label: "All years" },
     ...years.map((year) => ({
       value: year,
@@ -31,7 +51,7 @@ export default function Home() {
     })),
   ];
 
-  const sortOptions = [
+  const sortOptions: SelectOption[] = [
     { value: "", label: "Sort by" },
     { value: "score", label: "Score" },
     { value: "year", label: "Year" },

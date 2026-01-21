@@ -1,4 +1,8 @@
-function Button( {variant = "primary", children, ...rest} ) {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+	variant?: "primary" | "light";
+	children: React.ReactNode
+}
+function Button( {variant = "primary", children, ...rest}: ButtonProps ) {
 	const baseClasses = "flex items-center justify-center gap-2 transition font-[Nunito] text-sm font-bold cursor-pointer"
 	const variants = {
 		primary: "bg-darkGreen text-white rounded-xl w-full py-4 px-6  md:w-2xl hover:bg-darkGreen/90",

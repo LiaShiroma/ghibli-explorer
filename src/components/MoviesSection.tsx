@@ -1,7 +1,33 @@
 import { useEffect, useState } from "react";
-import MovieCard from "./MovieCard";
-import MovieModal from "./MovieModal";
-import Loading from "./Loading";
+import MovieCard from "./MovieCard.js";
+import MovieModal from "./MovieModal.js";
+import Loading from "./Loading.js";
+
+interface Movie {
+  id: string;
+  title: string;
+  director: string;
+  release_date: string;
+  rt_score: string;
+  image: string;
+  movie_banner: string;
+  description: string;
+  producer: string;
+  running_time: string;
+  original_title: string;
+  original_title_romanised: string;
+}
+
+interface MoviesSectionProps {
+  movies: Movie[];
+  search: string;
+  selectedDirector: string;
+  selectedYear: string;
+  selectedSort: string;
+  isLoading: boolean;
+  error?: unknown;
+}
+
 
 function MoviesSection({
   search,
@@ -11,8 +37,8 @@ function MoviesSection({
   selectedSort,
   isLoading,
   error,
-}) {
-  const [selectedMovie, setSelectedMovie] = useState(null);
+}: MoviesSectionProps) {
+  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
   const filteredMovies = movies.filter((movie) => {
     const matchesSearch = movie.title
@@ -33,10 +59,10 @@ function MoviesSection({
   if (selectedSort) {
     sortedMovies.sort((a, b) => {
       if (selectedSort === "year") {
-        return b.release_date - a.release_date;
+        return Number(b.release_date) - Number(a.release_date);
       }
       if (selectedSort === "score") {
-        return b.rt_score - a.rt_score;
+        return Number(b.rt_score) - Number(a.rt_score);
       }
       return 0;
     });
@@ -66,7 +92,7 @@ function MoviesSection({
     setSelectedMovie(null);
   }
 
-  function handleKeyDown(event) {
+  function handleKeyDown(event: KeyboardEvent) {
     if (event.key === "Escape") {
       handleCloseModal();
     }

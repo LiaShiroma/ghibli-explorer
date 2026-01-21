@@ -1,7 +1,21 @@
 import { ArrowRight, Calendar, Star, User } from "lucide-react";
-import Button from "./Button";
+import Button from "./Button.js";
 
-function MovieCard({ movie, onExplore }) {
+interface Movie {
+  id: string;
+  title: string;
+  director: string;
+  release_date: string;
+  rt_score: string;
+  image: string;
+}
+
+interface MovieCardProps {
+  movie: Movie;
+  onExplore: () => void;
+}
+
+function MovieCard({ movie, onExplore }: MovieCardProps) {
   return (
     <div
       className="group relative h-106 rounded-4xl overflow-hidden cursor-pointer animate-[fade-up_0.5s_ease-out_both]" onClick={onExplore}

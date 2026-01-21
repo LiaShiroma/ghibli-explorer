@@ -9,7 +9,7 @@ const navLinks = [
 ];
 
 function Header() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
     <header className="w-full px-6">

@@ -1,11 +1,36 @@
 import { CalendarDays, Clock, Film, Star, User, X } from "lucide-react";
 
-function MovieModal({movie, onClose}) {
-	console.log(movie);
-	
+interface Movie {
+  id: string;
+  title: string;
+  original_title: string;
+  original_title_romanised: string;
+  director: string;
+  producer: string;
+  release_date: string;
+  running_time: string;
+  rt_score: string;
+  description: string;
+  image: string;
+  movie_banner: string;
+}
+
+interface MovieModalProps {
+  movie: Movie;
+  onClose: () => void;
+}
+
+function MovieModal({ movie, onClose }: MovieModalProps) {
+
   return (
-    <div className="fixed z-10 w-full h-full bg-black/30 top-0 left-0 p-6 flex items-center justify-center animate-[modal-backdrop_0.3s_ease-out]" onClick={onClose}>
-      <div className="relative max-w-6xl w-full h-full max-h-200 rounded-2xl overflow-hidden animate-[modal-content_0.35s_ease-out_both]" onClick={(e) => e.stopPropagation()}>
+    <div
+      className="fixed z-10 w-full h-full bg-black/30 top-0 left-0 p-6 flex items-center justify-center animate-[modal-backdrop_0.3s_ease-out]"
+      onClick={onClose}
+    >
+      <div
+        className="relative max-w-6xl w-full h-full max-h-200 rounded-2xl overflow-hidden animate-[modal-content_0.35s_ease-out_both]"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -16,7 +41,10 @@ function MovieModal({movie, onClose}) {
         <div className="absolute inset-0 bg-linear-to-l from-bg via-bg/98 to-bg/70" />
 
         <div className="relative h-full z-10 p-6 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-7">
-          <button className="cursor-pointer absolute top-4 right-4 p-2 rounded-full hover:bg-darkGreen/5 transition" onClick={onClose}>
+          <button
+            className="cursor-pointer absolute top-4 right-4 p-2 rounded-full hover:bg-darkGreen/5 transition"
+            onClick={onClose}
+          >
             <X className="text-darkGreen" />
           </button>
 

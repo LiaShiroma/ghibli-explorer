@@ -1,7 +1,32 @@
-import Button from "./Button";
-import SearchInput from "./SearchInput";
-import Select from "./Select";
+import Button from "./Button.js";
+import SearchInput from "./SearchInput.js";
+import Select from "./Select.js";
 import { ArrowDownNarrowWide, Calendar, User } from "lucide-react";
+
+interface SelectOption {
+  value: string;
+  label: string;
+}
+
+interface FilterSectionProps {
+   search: string;
+  onSearchChange: (value: string) => void;
+
+  directorOptions: SelectOption[];
+  selectedDirector: string;
+  onDirectorChange: (value: string) => void;
+
+  yearOptions: SelectOption[];
+  selectedYear: string;
+  onYearChange: (value: string) => void;
+
+  sortOptions: SelectOption[];
+  selectedSort: string;
+  onSortChange: (value: string) => void;
+
+  onResetFilters: () => void;  
+
+}
 
 function FilterSection({
   search,
@@ -16,7 +41,7 @@ function FilterSection({
   selectedSort,
   onSortChange,
   onResetFilters
-}) {
+}: FilterSectionProps) {
   return (
     <section id="search" className="max-w-7xl mx-auto py-8 md:py-10">
       <h2 className="text-darkGreen font-[Playfair_Display] font-bold text-xl uppercase ml-4 mb-6 relative before:absolute before:bottom-0 before:-left-4 before:w-1 before:h-6 before:bg-green md:text-2xl md:before:h-8">
