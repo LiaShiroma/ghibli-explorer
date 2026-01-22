@@ -1,19 +1,6 @@
 import { CalendarDays, Clock, Film, Star, User, X } from "lucide-react";
+import type { Movie } from "../types/movie";
 
-interface Movie {
-  id: string;
-  title: string;
-  original_title: string;
-  original_title_romanised: string;
-  director: string;
-  producer: string;
-  release_date: string;
-  running_time: string;
-  rt_score: string;
-  description: string;
-  image: string;
-  movie_banner: string;
-}
 
 interface MovieModalProps {
   movie: Movie;

@@ -2,21 +2,8 @@ import { useEffect, useState } from "react";
 import MovieCard from "./MovieCard.js";
 import MovieModal from "./MovieModal.js";
 import Loading from "./Loading.js";
+import type { Movie } from "../types/movie";
 
-interface Movie {
-  id: string;
-  title: string;
-  director: string;
-  release_date: string;
-  rt_score: string;
-  image: string;
-  movie_banner: string;
-  description: string;
-  producer: string;
-  running_time: string;
-  original_title: string;
-  original_title_romanised: string;
-}
 
 interface MoviesSectionProps {
   movies: Movie[];

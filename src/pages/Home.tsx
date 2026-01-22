@@ -3,21 +3,7 @@ import Banner from "../assets/banner.png";
 import AboutSection from "../components/AboutSection";
 import FilterSection from "../components/FilterSection";
 import MoviesSection from "../components/MoviesSection";
-
-interface Movie {
-  id: string;
-  title: string;
-  director: string;
-  producer: string;
-  release_date: string;
-  running_time: string;
-  rt_score: string;
-  description: string;
-  image: string;
-  movie_banner: string;
-  original_title: string;
-  original_title_romanised: string;
-}
+import type { Movie } from "../types/movie";
 
 interface SelectOption {
   value: string;

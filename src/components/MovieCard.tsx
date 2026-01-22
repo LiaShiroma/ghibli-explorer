@@ -1,14 +1,7 @@
 import { ArrowRight, Calendar, Star, User } from "lucide-react";
 import Button from "./Button.js";
+import type { Movie } from "../types/movie";
 
-interface Movie {
-  id: string;
-  title: string;
-  director: string;
-  release_date: string;
-  rt_score: string;
-  image: string;
-}
 
 interface MovieCardProps {
   movie: Movie;
