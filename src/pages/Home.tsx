@@ -56,7 +56,7 @@ export default function Home() {
         setError(null)
         setIsLoading(true)
         const res = await fetch("https://ghibliapi.vercel.app/films");
-        const data = await res.json();
+        const data: Movie[] = await res.json();
         setMovies(data);
       } catch (error) {
         setError(error)
