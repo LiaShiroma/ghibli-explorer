@@ -1,7 +1,4 @@
-interface SelectOption {
-  value: string;
-  label: string;
-}
+import type { SelectOption } from "../types/select-option";
 
 interface SelectProps {
   label: string;

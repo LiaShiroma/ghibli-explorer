@@ -2,11 +2,7 @@ import Button from "./Button.js";
 import SearchInput from "./SearchInput.js";
 import Select from "./Select.js";
 import { ArrowDownNarrowWide, Calendar, User } from "lucide-react";
-
-interface SelectOption {
-  value: string;
-  label: string;
-}
+import type { SelectOption } from "../types/select-option";
 
 interface FilterSectionProps {
    search: string;

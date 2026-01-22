@@ -4,11 +4,8 @@ import AboutSection from "../components/AboutSection";
 import FilterSection from "../components/FilterSection";
 import MoviesSection from "../components/MoviesSection";
 import type { Movie } from "../types/movie";
+import type { SelectOption } from "../types/select-option";
 
-interface SelectOption {
-  value: string;
-  label: string;
-}
 
 export default function Home() {
   const [movies, setMovies] = useState<Movie[]>([]);
