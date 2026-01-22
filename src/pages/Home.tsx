@@ -14,7 +14,7 @@ export default function Home() {
   const [selectedYear, setSelectedYear] = useState<string>("");
   const [selectedSort, setSelectedSort] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [error, setError] = useState<unknown | null>(null)
+  const [error, setError] = useState<Error | null>(null)
 
   const directors = Array.from(new Set(movies.map((movie) => movie.director)));
   const directorOptions: SelectOption[] = [
@@ -56,7 +56,11 @@ export default function Home() {
         const data: Movie[] = await res.json();
         setMovies(data);
       } catch (error) {
-        setError(error)
+        if(error instanceof Error) {
+          setError(error)
+        } else {
+          setError(new Error("Unknown error"))
+        }
       } finally {
         setIsLoading(false)
       }
